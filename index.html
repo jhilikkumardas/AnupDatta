@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anup Datta – Indian Classical Tabla Maestro of the Farrukhabad Gharana. Official website featuring performances, biography, and more." />
+  <meta name="keywords" content="Anup Datta, Tabla, Indian Classical Music, Farrukhabad Gharana, Tabla Maestro" />
+  <meta property="og:title" content="Anup Datta | Tabla Maestro" />
+  <meta property="og:description" content="Official website of Anup Datta, Indian Classical Tabla Virtuoso" />
+  <title>Anup Datta | Tabla Maestro</title>
+
+  <!-- Favicon Added -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <!-- Preload Critical Images for Performance -->
+  <link rel="preload" as="image" href="images/banner.webp" media="(min-width: 769px)" fetchpriority="high" />
+  <!-- Video Path Fixed -->
+  <link rel="preload" as="video" href="images/banner-video.webm" media="(max-width: 992px)" fetchpriority="high" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  
+  <!-- Background Music -->
+  <audio id="bg-music" src="images/tabla.mp3" loop preload="metadata"></audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Override External Video Click Events
+      const closeBtn = document.getElementById('close-modal');
+      const backdrop = document.getElementById('modal-backdrop');
+      if (closeBtn) {
+          closeBtn.onclick = function(e) { e.stopImmediatePropagation(); closeCustomVideo(); };
+      }
+      if (backdrop) {
+          backdrop.onclick = function(e) { e.stopImmediatePropagation(); closeCustomVideo(); };
+      }
+    });
+
+    // Custom Video Player Function
+    function playCustomVideo(id, title) {
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('modal-iframe');
+      const titleEl = document.getElementById('modal-title');
+      
+      // Pause Background Music when video starts
+      const bgMusic = document.getElementById('bg-music');
+      if (bgMusic && !bgMusic.paused) {
+          bgMusic.pause();
+          bgMusic.dataset.wasPlaying = "true";
+      }
+      
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1';
+      titleEl.textContent = title;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCustomVideo() {
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('modal-iframe');
+      iframe.src = '';
+      modal.hidden = true;
+      document.body.style.overflow = '';
+
+      // Resume Background Music when video closes
+      const bgMusic = document.getElementById('bg-music');
+      if (bgMusic && bgMusic.dataset.wasPlaying === "true") {
+          bgMusic.play().catch(e => console.log("Audio playback failed:", e));
+      }
+    }
+  </script>
+
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header id="header" role="banner">
+    <nav class="nav-container" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="Anup Datta – Home">
+        <span class="logo-name">Anup Datta</span>
+        <span class="logo-sub">Tabla Maestro</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="nav-links" role="list">
+        <li><a href="#home" class="nav-link" aria-current="page">Home</a></li>
+        <li><a href="#performance" class="nav-link">Performances</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#memories" class="nav-link">Memories</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Social Icons Desktop -->
+      <div class="nav-socials">
+        <a href="https://www.instagram.com/anup_datta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/TablaAnup" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.youtube.com/@anupdattatabla" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+      <ul role="list">
+        <li><a href="#home" class="mobile-nav-link">Home</a></li>
+        <li><a href="#performance" class="mobile-nav-link">Performances</a></li>
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#memories" class="mobile-nav-link">Memories</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        <li class="mobile-socials">
+          <a href="https://www.instagram.com/anup_datta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/TablaAnup" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.youtube.com/@anupdattatabla" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section id="home" aria-label="Hero" class="hero-section">
+    <!-- Desktop Background -->
+    <div class="hero-bg desktop-only" aria-hidden="true">
+      <img src="images/banner.webp" alt="Anup Datta" class="hero-bg-img" fetchpriority="high" />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Mobile Background 2 (The Base with Text) -->
+    <div class="hero-bg mobile-only" aria-hidden="true">
+      <img src="images/banner-phone2.webp" alt="Anup Datta Background" class="hero-bg-img" />
+      <div class="hero-overlay phone2-overlay"></div>
+    </div>
+
+    <!-- Hero Content (Left Aligned Block with Centered Dividers) -->
+    <div class="hero-content-wrapper">
+      <div class="hero-content" id="hero-content">
+        
+        <!-- Ornament Centered inside the block -->
+        <div class="hero-ornament" aria-hidden="true">
+          <span class="ornament-line"></span>
+          <i class="fa-solid fa-circle-dot"></i>
+          <span class="ornament-line"></span>
+        </div>
+
+        <p class="hero-eyebrow">Where Rhythm Becomes Devotion</p>
+
+        <h1 class="hero-title">
+          <span class="hero-title-line">Anup</span>
+          <span class="hero-title-line italic-gold">Datta</span>
+        </h1>
+
+        <p class="hero-tagline">A Life Dedicated to Tabla</p>
+
+        <!-- Divider Centered inside the block -->
+        <div class="hero-divider" aria-hidden="true">
+          <span></span><span class="dot"></span><span></span><span class="dot"></span><span></span>
+        </div>
+
+        <!-- Subtitle Centered inside the block -->
+        <p class="hero-sub">Farrukhabad Gharana · All India Radio · International Stages</p>
+
+        <a href="#performance" class="hero-cta" aria-label="Explore Performances">
+          <i class="fa-solid fa-play" aria-hidden="true"></i>
+          Explore Performances
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator (Desktop Only) -->
+    <div class="scroll-indicator desktop-only" aria-hidden="true">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll</span>
+    </div>
+
+    <!-- Mobile Background 1 (Initial Cover Video, fades out on scroll, NO TEXT) -->
+    <div class="hero-mobile-cover mobile-only" id="mobile-hero-cover">
+      <video id="mobile-hero-video" class="hero-bg-video" autoplay muted loop playsinline fetchpriority="high">
+    <source src="images/banner-video.webm" type="video/webm">
+    <source src="images/banner-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ PERFORMANCE ═══════════════════════ -->
+  <section id="performance" aria-label="Performances">
+    <div class="container">
+
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Watch & Listen</p>
+        <h2 class="section-title">Performances</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <p class="section-desc">A curated collection of live tabla recitals, solo performances, and collaborative concerts spanning decades of artistic excellence.</p>
+      </div>
+
+      <!-- Featured Video -->
+      <div class="featured-video yt-fallback-loader" data-video="TNSu2N0-LbA" data-reveal data-reveal-delay="100">
+        <div class="featured-video-thumb" onclick="event.stopImmediatePropagation(); playCustomVideo('TNSu2N0-LbA', 'Shri Anup Datta | Tabla Journey')" role="button" tabindex="0" aria-label="Play: Shri Anup Datta | Tabla Journey">
+          <img src="" alt="Shri Anup Datta | Tabla Journey" class="yt-thumb-img" loading="lazy" />
+          <div class="play-overlay">
+            <div class="play-btn-large" aria-hidden="true">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+          <div class="featured-label">Featured Performance</div>
+        </div>
+        <div class="featured-video-info">
+          <h3>Shri Anup Datta | Tabla Journey</h3>
+          <p>An intimate journey through the life and rhythm of a maestro — from his earliest training under legendary gurus to the grandest concert halls of the world.</p>
+        </div>
+      </div>
+
+      <!-- Video Grid -->
+      <div class="video-grid" id="custom-video-grid" aria-label="Performance videos">
+        
+        <div class="video-card yt-fallback-loader" data-video="tnjoVuP62Cc" onclick="event.stopImmediatePropagation(); playCustomVideo('tnjoVuP62Cc', 'Title Dhere Dhere rela|Anup Datta|Tabla solo|part-1')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Title Dhere Dhere rela" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Title Dhere Dhere rela|Anup Datta|Tabla solo|part-1</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="_G31HonS2Ps" onclick="event.stopImmediatePropagation(); playCustomVideo('_G31HonS2Ps', 'Tabla solo|part-2|Anup Datta|Farrukhabad gharana')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Tabla solo part-2" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Tabla solo|part-2|Anup Datta|Farrukhabad gharana</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="q9vEg9DX8Qc" onclick="event.stopImmediatePropagation(); playCustomVideo('q9vEg9DX8Qc', 'Tabla solo|part-3|Anup Datta|Farrukhabad gharana')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Tabla solo part-3" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Tabla solo|part-3|Anup Datta|Farrukhabad gharana</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="R3jywv1b1Pw" onclick="event.stopImmediatePropagation(); playCustomVideo('R3jywv1b1Pw', 'Ustad Shahid Parvez Khan|Anup Datta|part-1')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Ustad Shahid Parvez Khan" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Ustad Shahid Parvez Khan|Anup Datta|part-1</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="zkODTRebVx4" onclick="event.stopImmediatePropagation(); playCustomVideo('zkODTRebVx4', 'Ustad Shahid Parvez Khan|Anup Datta|part-2')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Ustad Shahid Parvez Khan part 2" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Ustad Shahid Parvez Khan|Anup Datta|part-2</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="EuMv1HhUpDQ" onclick="event.stopImmediatePropagation(); playCustomVideo('EuMv1HhUpDQ', 'Dhere Dhere rela|Anup Datta|Tabla solo|part-1')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Dhere Dhere rela part-1" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Dhere Dhere rela|Anup Datta|Tabla solo|part-1</h4>
+          </div>
+        </div>
+
+        <div class="video-card yt-fallback-loader" data-video="3-kJosK9KJo" onclick="event.stopImmediatePropagation(); playCustomVideo('3-kJosK9KJo', 'Padmabhushan Pandit Debu Chaudhuri | Sitar|Raag- Jhinjhoti')" role="button" tabindex="0">
+          <div class="video-thumb">
+            <img src="" alt="Padmabhushan Pandit Debu Chaudhuri" class="yt-thumb-img" loading="lazy" />
+            <div class="play-btn" aria-hidden="true"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="video-card-info">
+            <h4>Padmabhushan Pandit Debu Chaudhuri | Sitar|Raag- Jhinjhoti</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-content">
+        <button id="close-modal" class="modal-close" aria-label="Close video">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <div class="video-wrapper">
+          <iframe id="modal-iframe" src="" title="YouTube video" frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+        <p id="modal-title" class="modal-video-title"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+  <section id="about" aria-label="About Anup Datta">
+    <div class="about-bg-texture" aria-hidden="true"></div>
+    <div class="container">
+
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">The Artist</p>
+        <h2 class="section-title">A Life in Rhythm</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Images Column -->
+        <div class="about-images" data-reveal data-reveal-delay="100">
+          <div class="about-img-primary">
+            <img src="images/special-1.webp" alt="Anup Datta performing on tabla" loading="lazy" />
+            <div class="about-img-frame" aria-hidden="true"></div>
+          </div>
+          <div class="about-img-secondary">
+            <img src="images/special-2.webp" alt="Anup Datta with tabla" loading="lazy" />
+          </div>
+          <div class="about-badge" aria-label="36 Years at Khairagarh University">
+            <span class="badge-number">36</span>
+            <p class="badge-text">Years at<br/>Khairagarh<br/>University</p>
+          </div>
+        </div>
+
+        <!-- Text Column -->
+        <div class="about-text" data-reveal data-reveal-delay="200">
+          <blockquote class="about-quote">
+            <i class="fa-solid fa-quote-left" aria-hidden="true"></i>
+            <p>His smooth and easy flow of fingering creates a very sweet sound of music that penetrates the heart of all the audience.</p>
+          </blockquote>
+
+          <div class="about-story">
+            <p>
+              <strong>Anup Datta</strong> is an Indian tabla player of the <em>Farrukhabad Gharana</em>, born in Kolkata on 4th March. His journey into rhythm began at the tender age of <mark>8</mark>, under the guiding hands of <strong>Pt. Shib Sankar Karmakar</strong>.
+            </p>
+            <p>
+              His traditional training was further shaped under two great Masters — <strong>Ustad Karamatullah Khan</strong> and <strong>Pandit Shyamal Bose</strong>. This rare dual lineage sculpted an artist of extraordinary depth and versatility.
+            </p>
+            <p>
+              He made his mark at the prestigious <em>All India Tansen Music Conference</em> and the <em>All Bengal Music Competition</em> in Kolkata in 1975, and was awarded the coveted <strong>National Talent Search Scholarship</strong> from the Ministry of Education and Culture, Govt. of India, New Delhi in 1980.
+            </p>
+            <p>
+              A recipient of <strong>M.Mus. (Sangeet Bhaskar)</strong>, Anup Datta is a regular performer on All India Radio and Television. He was attached to <strong>Indira Kala Sangeet University</strong>, Khairagarh (C.G.) for <mark>36 years</mark>.
+            </p>
+          </div>
+
+          <!-- Achievements -->
+          <div class="achievements-grid">
+            <div class="achievement-chip">
+              <i class="fa-solid fa-award" aria-hidden="true"></i>
+              <span>National Scholarship 1980</span>
+            </div>
+            <div class="achievement-chip">
+              <i class="fa-solid fa-globe" aria-hidden="true"></i>
+              <span>UK, USA, France, Austria, Germany</span>
+            </div>
+            <div class="achievement-chip">
+              <i class="fa-solid fa-microphone" aria-hidden="true"></i>
+              <span>All India Radio & TV</span>
+            </div>
+            <div class="achievement-chip">
+              <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+              <span>Sangeet Bhaskar, M.Mus.</span>
+            </div>
+          </div>
+
+          <!-- SPECIAL-3 & QUOTE (50/50 SPLIT & QUOTE ON LEFT) -->
+          <div class="special-section-wrapper">
+            
+            <!-- Luxury Quote Card (Left Side) -->
+            <div class="luxury-quote-card" data-reveal data-reveal-delay="300">
+              <div class="quote-glass">
+                <i class="fa-solid fa-quote-left quote-icon-bg"></i>
+                <p class="quote-text">“Tabla is not just an instrument, it is a language of rhythm. If you respect it, it will speak to you.”</p>
+                <p class="quote-author">— Ustad Alla Rakha</p>
+              </div>
+            </div>
+            
+            <!-- Special Image 3 (Right Side) -->
+            <div class="about-img-wide cinematic-zoom-container" data-reveal data-reveal-delay="400">
+              <img src="images/special-3.webp" alt="Anup Datta on international stage" loading="lazy" class="zoom-target" />
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Collaborators Marquee -->
+      <div class="collaborators-section" data-reveal>
+        <p class="collaborators-eyebrow">Accompanied with the Finest Maestros</p>
+        <div class="marquee-outer" role="marquee" aria-label="Collaborators">
+          <div class="marquee-track" id="marquee-track">
+            <span>Ustad Shahid Parvez</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Budhaditya Mukherjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Debu Chowdhury</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Mans Chakraborty</span><span class="sep" aria-hidden="true">·</span>
+            <span>Dr. M.R. Gautam</span><span class="sep" aria-hidden="true">·</span>
+			<span>Pt. Partho Sarothy</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Samaresh Chowdhury</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Sanjay Banerjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Kushal Das</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Debashish Bhattacharya</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Muneshwar Dayal</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Indrajit Banerjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Joydeep Ghosh</span><span class="sep" aria-hidden="true">·</span>
+            <span>Ustad Dhyanesh Khan</span><span class="sep" aria-hidden="true">·</span>
+            <!-- Duplicate for loop -->
+            <span>Ustad Shahid Parvez</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Budhaditya Mukherjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Debu Chowdhury</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Mans Chakraborty</span><span class="sep" aria-hidden="true">·</span>
+            <span>Dr. M.R. Gautam</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Samaresh Chowdhury</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Sanjay Banerjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Kushal Das</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Debashish Bhattacharya</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Muneshwar Dayal</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Indrajit Banerjee</span><span class="sep" aria-hidden="true">·</span>
+            <span>Pt. Joydeep Ghosh</span><span class="sep" aria-hidden="true">·</span>
+            <span>Ustad Dhyanesh Khan</span><span class="sep" aria-hidden="true">·</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ MIDDLE BANNER ═══════════════════════ -->
+  <section id="middle-banner" aria-label="Quote banner">
+    <div class="banner-bg">
+      <img src="images/middle-banner.webp" alt="Performance Banner" class="banner-bg-img safe-cover" loading="lazy" />
+      <div class="banner-overlay"></div>
+    </div>
+    <div class="banner-particles" aria-hidden="true" id="banner-particles"></div>
+  </section>
+
+  <!-- ═══════════════════════ MEMORIES GALLERY ═══════════════════════ -->
+  <section id="memories" aria-label="Photo gallery">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">A Life Captured</p>
+        <h2 class="section-title">Memories</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+        <p class="section-desc">Moments frozen in time — from intimate rehearsals to grand concert stages, spanning decades of artistry.</p>
+      </div>
+
+      <!-- Masonry Gallery -->
+      <div class="masonry-gallery" id="gallery-grid" role="list" aria-label="Photo gallery"></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox" hidden>
+      <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+      <button id="lightbox-prev" class="lightbox-nav" aria-label="Previous photo"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+      <button id="lightbox-next" class="lightbox-nav" aria-label="Next photo"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close lightbox"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="Gallery photo" />
+        <p id="lightbox-caption"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+  <section id="contact" aria-label="Contact">
+    <div class="contact-bg" aria-hidden="true"></div>
+    <div class="container">
+
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-rule" aria-hidden="true"></div>
+      </div>
+
+      <div class="contact-content" data-reveal data-reveal-delay="150">
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <h3>Studio Address</h3>
+              <address>
+                8, Shib Chandra Palit Lane, Flat No. 201,<br/>
+                P.O. Serampore, Hooghly (W.B.),<br/>
+                India — PIN: 712201
+              </address>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <h3>Phone</h3>
+              <a href="tel:+919406061952">+91 9406061952</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <div>
+              <h3>Follow the Maestro</h3>
+              <div class="contact-socials">
+                <a href="https://www.instagram.com/anup_datta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.facebook.com/TablaAnup" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.youtube.com/@anupdattatabla" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                  <i class="fab fa-youtube" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map-quote">
+          <div class="contact-quote-wrap">
+            <div class="contact-flame" aria-hidden="true">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <p class="contact-quote-text">The tabla speaks what words cannot. Every stroke is a prayer, every rhythm a universe.</p>
+            <span class="contact-quote-attr">— Anup Datta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name">Anup Datta</p>
+        <p class="footer-tagline">Tabla Maestro · Farrukhabad Gharana</p>
+      </div>
+
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/anup_datta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/TablaAnup" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/@anupdattatabla" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Anup Datta. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#performance">Performances</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <p>Crafted with <i class="fa-solid fa-heart" aria-hidden="true"></i> for the Art of Tabla</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
